@@ -11,6 +11,5 @@ int main(int argc, char** argv) {
     }
     passive_socket_stop_listening(&sock);
     passive_socket_destroy(&sock);
-
     return 0;
 }

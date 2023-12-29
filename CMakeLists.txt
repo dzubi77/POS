@@ -5,6 +5,11 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(POS_SP main.c
         server/moderator.h server/moderator.c
-        server/sockety/passive_socket.h server/sockety/passive_socket.c)
+        server/sockety/passive_socket.h server/sockety/passive_socket.c
+        server/sockety/active_socket.h server/sockety/active_socket.c
+        server/sockety/char_buffer.h server/sockety/char_buffer.c
+        server/sockety/linked_list.h
+        klient/sockety/client_socket.h klient/sockety/client_socket.c
+        klient/hrac.h klient/hrac.c)
 
 target_link_libraries(POS_SP pthread)
