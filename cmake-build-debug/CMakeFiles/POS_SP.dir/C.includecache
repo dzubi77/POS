@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/tmp/tmp.D9pG1miivb/main.c
+stdio.h
+-
+server/sockety/passive_socket.h
+/tmp/tmp.D9pG1miivb/server/sockety/passive_socket.h
+
+/tmp/tmp.D9pG1miivb/server/sockety/active_socket.h
+pthread.h
+-
+char_buffer.h
+/tmp/tmp.D9pG1miivb/server/sockety/char_buffer.h
+linked_list.h
+/tmp/tmp.D9pG1miivb/server/sockety/linked_list.h
+
+/tmp/tmp.D9pG1miivb/server/sockety/char_buffer.h
+stdlib.h
+-
+
+/tmp/tmp.D9pG1miivb/server/sockety/linked_list.h
+stdlib.h
+-
+stdbool.h
+-
+
+/tmp/tmp.D9pG1miivb/server/sockety/passive_socket.h
+stdbool.h
+-
+pthread.h
+-
+active_socket.h
+/tmp/tmp.D9pG1miivb/server/sockety/active_socket.h
+
