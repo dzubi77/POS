@@ -1,17 +1,13 @@
-//
-// Created by petok on 14. 12. 2023.
-//
-
 #ifndef MODERATOR_H
 #define MODERATOR_H
-#include <pthread.h>
+
+#include "../kviz.h"
+#include "sockety/active_socket.h"
+#include "sockety/char_buffer.h"
 
 typedef struct Moderator {
-    int pocetOtazok;
-    int pocetHracov;
-    pthread_mutex_t mutexPrihlasenie;
-    pthread_cond_t condOtazka;
-    pthread_cond_t condOdhlasovane;
+    KVIZ* kviz;
+    ACTIVE_SOCKET* moderator_sock;
 } MODERATOR;
 
 void* moderuj(void* data);
