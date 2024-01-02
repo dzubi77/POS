@@ -4,14 +4,13 @@
 
 void error(const char* message) {
     perror(message);
-    exit(EXIT_FAILURE);
 }
 
-void clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* port) {
+int clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* port) {
     client->server = gethostbyname(hostname);
     if (client->server == NULL) {
         printf("No such host!");
-        exit(EXIT_FAILURE);
+        return 1;
     }
 
     bzero((char*)&client->serv_addr, sizeof(client->serv_addr));
@@ -22,13 +21,17 @@ void clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* p
     client->sock_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (client->sock_fd < 0) {
         error("Error while creating socket!");
+        return 1;
     }
+    return 0;
 }
 
-void clientConnectToServer(CLIENT_SOCKET* client) {
+int clientConnectToServer(CLIENT_SOCKET* client) {
     if (connect(client->sock_fd, (struct sockaddr*)&client->serv_addr, sizeof(client->serv_addr)) < 0) {
         error("Error while connecting to socket!");
+        return 1;
     }
+    return 0;
 }
 
 void clientSendData(CLIENT_SOCKET* client, const char* message) {

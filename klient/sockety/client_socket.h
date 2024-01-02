@@ -18,8 +18,8 @@ typedef struct client_socket {
 } CLIENT_SOCKET;
 
 void error(const char* message);
-void clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* port);
-void clientConnectToServer(CLIENT_SOCKET* client);
+int clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* port);
+int clientConnectToServer(CLIENT_SOCKET* client);
 void clientSendData(CLIENT_SOCKET* client, const char* message);
 void clientReceiveData(CLIENT_SOCKET* client, char* buffer, int bufferSize);
 void clientCloseConnection(CLIENT_SOCKET* client);
