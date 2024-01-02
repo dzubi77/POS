@@ -39,7 +39,11 @@ void clientSendData(CLIENT_SOCKET* client, const char* message) {
 }
 
 void clientReceiveData(CLIENT_SOCKET* client, char* buffer, int bufferSize) {
-
+    int n = read(client->sock_fd, buffer, bufferSize - 1);
+    if (n < 0) {
+        error("Error reading from socket");
+    }
+    printf("%s \n", buffer);
 }
 
 void clientCloseConnection(CLIENT_SOCKET* client) {
@@ -48,10 +52,10 @@ void clientCloseConnection(CLIENT_SOCKET* client) {
 
 _Bool clientIsConnected(CLIENT_SOCKET* client) {
     if (client->sock_fd >= 0) {
-        printf("Client connected");
+        printf("Client connected \n");
         return true;
     } else {
-        printf("Not connected");
+        printf("Not connected \n");
         return false;
     }
 }

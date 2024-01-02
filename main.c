@@ -1,50 +1,44 @@
 #include <stdio.h>
+#include "server/sockety/passive_socket.h"
 #include "server/sockety/active_socket.h"
 #include "klient/sockety/client_socket.h"
 
 #include "server/moderator.h"
 #include "klient/hrac.h"
-#include "kviz.h"
 
 int main(int argc, char** argv) {
-    //init quiz
-    KVIZ kviz;
+    //server sockets init
+    PASSIVE_SOCKET p_sock;
+    ACTIVE_SOCKET a_sock;
+    passive_socket_init(&p_sock);
+    active_socket_init(&a_sock);
+    passive_socket_start_listening(&p_sock, atoi(argv[2]));
+
+    //sync mechanism init
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t otazkaPripravena = PTHREAD_COND_INITIALIZER;
     pthread_cond_t odpovedPripravena = PTHREAD_COND_INITIALIZER;
-    kviz_init(&kviz, 5, 3, &mutex, &otazkaPripravena, &odpovedPripravena);
 
-    //init moderator thread
-    ACTIVE_SOCKET a_sock;
-    active_socket_init(&a_sock);
-
-    MODERATOR moderator;
-    moderator.kviz = &kviz;
-    moderator.moderator_sock = &a_sock;
+    //moderator init
+    MODERATOR moderator = { 3, 5, &mutex, &otazkaPripravena, &odpovedPripravena };
     pthread_t th_moderator;
-    pthread_create(&th_moderator, NULL, moderuj, NULL);
+    pthread_create(&th_moderator, NULL, moderuj, &moderator);
 
-    //init player threads
-    HRAC hraci[kviz.pocetHracov];
-    pthread_t th_hrac[kviz.pocetHracov];
-    for (int i = 0; i < kviz.pocetHracov; i++) {
+    HRAC hraci[moderator.pocetHracov];
+    pthread_t th_hrac[moderator.pocetHracov];
+    for (int i = 0; i < moderator.pocetHracov; i++) {
         hraci[i].id = i + 1;
-        hraci[i].kviz = &kviz;
-        CLIENT_SOCKET c_sock;
-        clientInitialize(&c_sock, argv[1], argv[2]);
-        hraci[i].hrac_sock = &c_sock;
-
-        pthread_create(&th_hrac[i], NULL, hraj, NULL);
+        pthread_create(&th_hrac[i], NULL, hraj, &hraci[i]);
     }
 
-    //waiting for threads and cleanup
-    pthread_join(th_moderator, NULL);
+    CLIENT_SOCKET c_sock;
+    clientInitialize(&c_sock, argv[1], argv[2]);
+    clientConnectToServer(&c_sock);
+    passive_socket_wait_for_client(&p_sock, &a_sock);
 
-    for (int i = 0; i < kviz.pocetHracov; i++) {
-        clientCloseConnection(hraci[i].hrac_sock);
-        pthread_join(th_hrac[i], NULL);
-    }
-
+    clientCloseConnection(&c_sock);
+    passive_socket_destroy(&p_sock);
     active_socket_destroy(&a_sock);
-    kviz_destroy(&kviz);
+
+    return 0;
 }
