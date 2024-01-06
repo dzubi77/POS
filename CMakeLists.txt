@@ -11,6 +11,7 @@ add_executable(POS_SP main.c
         server/sockety/linked_list.h
         klient/sockety/client_socket.h klient/sockety/client_socket.c
         klient/hrac.h klient/hrac.c
+        server/kviz.h
 )
 
 target_link_libraries(POS_SP pthread)
