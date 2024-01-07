@@ -4,6 +4,7 @@
 #include "klient/sockety/client_socket.h"
 #include "server/moderator.h"
 #include "server/hrac.h"
+#include "server/kviz.h"
 
 #define MAX_CLIENTS 10
 
@@ -24,27 +25,27 @@ typedef struct klient_data {
     CLIENT_SOCKET* c_sock;
 } KLIENT_DATA;
 
-void handleClient() {
-
-}
 
 void* serveruj(void* data) {
     SERVER_DATA *d = (SERVER_DATA *)data;
+    QUIZ quiz;
+    initializeQuiz(&quiz);
+
     passive_socket_init(&(d->p_sock));
     ACTIVE_SOCKET active_socket;
     active_socket_init(&active_socket);
     passive_socket_start_listening(&(d->p_sock), d->port);
-    printf("cakam na klienta\n");
+    printf("Cakam na klienta.\n");
     passive_socket_wait_for_client(&d->p_sock,&active_socket);
 
     //vytvorenie prveho hraca
-    d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych,&active_socket};
+    d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych,&active_socket, &quiz};
     d->pocet_pripojenych++;
     printf("server zaznamenal klienta.\n");
 
     if (d->simulation) {
         d->pocet_hracov = 2;
-        printf("Caka sa na %d hrcaov.\n",d->pocet_hracov - d->pocet_pripojenych);
+        printf("Caka sa na %d hracov.\n",d->pocet_hracov - d->pocet_pripojenych);
     } else {
         CHAR_BUFFER buf;
         char_buffer_init(&buf);
@@ -63,26 +64,34 @@ void* serveruj(void* data) {
         passive_socket_wait_for_client(&d->p_sock,&a_sock);
 
         //pridanie hraca
-        d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych,&a_sock};
+        d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych, &a_sock, &quiz};
         d->pocet_pripojenych++;
-        printf("AKtualne pripojenych %d hracov", d->pocet_pripojenych);
+        printf("AKtualne pripojenych %d hracov.\n", d->pocet_pripojenych);
     }
-
-    //TODO vytvorenie moderatora
-
     passive_socket_stop_listening(&d->p_sock);
     passive_socket_destroy(&d->p_sock);
-    printf("koniec serveruj\n");
+
+    //zacatie hry
+    printf("Zaciatok hry.\n");
+    MODERATOR moderator_data = {d->pocet_hracov,5,d->hraci, &quiz};
+    pthread_t moderator;
+    pthread_create(&moderator,NULL, moderuj, &moderator_data);
+
+    //ukoncenie hry
+    pthread_join(moderator,NULL);
+    destroyQuiz(&quiz);
+    printf("Hra skoncena.\n");
     return NULL;
 }
 
 void* klientuj(void* data) {
     KLIENT_DATA *d = (KLIENT_DATA *)data;
-//    char* output = (char*)malloc(100);
-//    memset(output, 0, 100);
-//    clientReceiveData(d->c_sock,output,100);
-//    printf("output: %s\n", output);
-//    sleep(1);
+    //TODO spravit klienta
+    char* output = (char*)malloc(100);
+    memset(output, 0, 100);
+    clientReceiveData(d->c_sock,output,100);
+    printf("output: %s\n", output);
+    sleep(1);
 //    for (int i = 0; i < 100; i++) {
 //        const char *message = "sprava pre server";
 //        ssize_t message_length = strlen(message);

@@ -12,6 +12,7 @@ add_executable(POS_SP main.c
         klient/sockety/client_socket.h klient/sockety/client_socket.c
         server/hrac.h server/hrac.c
         server/kviz.h
+        server/kviz.c
 )
 
 target_link_libraries(POS_SP ${GTK3_LIBRARIES})
