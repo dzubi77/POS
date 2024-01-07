@@ -19,9 +19,9 @@ void initializeSockets(SERVER_DATA *data) {
 
 void destroySockets(SERVER_DATA *data) {
     printf("Destroying sockets.\n");
-    passive_socket_stop_listening(&(data->p_sock));
+    //passive_socket_stop_listening(&(data->p_sock));
     active_socket_destroy(&(data->a_sock));
-    passive_socket_destroy(&(data->p_sock));
+    //passive_socket_destroy(&(data->p_sock));
 }
 
 typedef struct klient_data {
@@ -35,7 +35,12 @@ void* consume(void* data) {
     CHAR_BUFFER output;
     char_buffer_init(&output);
     printf("snazim sa citat.\n");
+    int i = 0;
+    while(d->a_sock.is_reading == false){
+        sleep(2);
+    }
     while(d->a_sock.is_reading) {
+        printf("citam,output: %s.\n", output.data);
         active_socket_try_get_read_data(&d->a_sock, &output);
         if (output.size > 0) {
             printf("nieco tam je.\n");
@@ -43,6 +48,13 @@ void* consume(void* data) {
             active_socket_stop_reading(&d->a_sock);
             printf("malo by sa zastavit\n");
         }
+        if (i == 1000){
+            active_socket_stop_reading(&d->a_sock);
+            printf("stop po 1000 opakovaniach\n");
+            break;
+        }
+        i++;
+        usleep(10);
     }
     printf("docital som.\n");
 
@@ -54,14 +66,13 @@ void* serveruj(void* data) {
     passive_socket_stop_listening(&d->p_sock);
     passive_socket_destroy(&d->p_sock);
     printf("server zaznamenal klienta.\n");
-    //active_socket_start_reading(&d->a_sock);
     struct char_buffer buffer;
     char_buffer_init(&buffer);
-    char message[] = "haha";
+    char message[] = "sprava pre klienta";
     char_buffer_append(&buffer, message, sizeof(message) - 1);
 
     active_socket_write_data(&d->a_sock, &buffer);
-    sleep(5);
+    active_socket_start_reading(&d->a_sock);
     //sync mechanism init
 //    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 //    pthread_cond_t otazkaPripravena = PTHREAD_COND_INITIALIZER;
@@ -79,13 +90,16 @@ void* klientuj(void* data) {
     KLIENT_DATA *d = (KLIENT_DATA *)data;
     char* output = (char*)malloc(100);
     clientReceiveData(d->c_sock,output,100);
-    printf("output " , output);
+    printf("output: %s\n", output);
+    clientSendData(d->c_sock,"sprava pre server");
+    printf("klient poslal spravu.\n");
     //printf("zadaj nieco\n");
 //    char input[100];
 //    scanf("%s", input);
     //clientSendData(d->c_sock,input);
-//    clientCloseConnection(&d->c_sock);
-//    printf("Client disconnected.\n");
+    sleep(5);
+    clientCloseConnection(&d->c_sock);
+    printf("Client disconnected.\n");
 
 }
 

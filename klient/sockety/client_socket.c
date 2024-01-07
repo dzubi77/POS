@@ -1,5 +1,4 @@
 #include "client_socket.h"
-
 #define INVALID_SOCKET -1
 
 void error(const char* message) {
