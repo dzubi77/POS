@@ -9,7 +9,8 @@
 typedef struct Moderator {
     int pocetHracov;
     int pocetOtazok;
-    HRAC_DATA *hraci;
+    HRAC_DATA *hrac1;
+    HRAC_DATA *hrac2;
     QUIZ *quiz;
 } MODERATOR;
 

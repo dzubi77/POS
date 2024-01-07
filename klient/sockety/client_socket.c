@@ -33,7 +33,7 @@ int clientConnectToServer(CLIENT_SOCKET* client) {
 }
 
 void clientSendData(CLIENT_SOCKET* client, const void* buffer, ssize_t length) {
-    int n = send(client->sock_fd, buffer, length,0);
+    int n = write(client->sock_fd, buffer, length);
     if (n < 0) {
         printf("error sending socket.\n");
         error("Error while writing to socket!");
@@ -45,7 +45,7 @@ void clientReceiveData(CLIENT_SOCKET* client, char* buffer, int bufferSize) {
     if (n < 0) {
         error("Error reading from socket");
     }
-    printf("%s \n", buffer);
+    //printf("%s \n", buffer);
 }
 
 void clientCloseConnection(CLIENT_SOCKET* client) {

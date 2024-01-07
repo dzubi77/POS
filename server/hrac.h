@@ -16,4 +16,5 @@ typedef struct hrac_data {
 void* hraj(void* data);
 void* pocuvaj(void* data);
 void sendData(HRAC_DATA *d, char *message);
+void sendEndMessage(HRAC_DATA *d);
 #endif //POS_SP_HRAC_H

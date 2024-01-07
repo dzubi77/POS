@@ -15,7 +15,8 @@ typedef struct server_data {
     int pocet_pripojenych;
     _Bool simulation;
     PASSIVE_SOCKET p_sock;
-    HRAC_DATA hraci[MAX_CLIENTS];
+    HRAC_DATA* hrac1;
+    HRAC_DATA *hrac2;
 } SERVER_DATA;
 
 
@@ -30,7 +31,6 @@ void* serveruj(void* data) {
     SERVER_DATA *d = (SERVER_DATA *)data;
     QUIZ quiz;
     initializeQuiz(&quiz);
-
     passive_socket_init(&(d->p_sock));
     ACTIVE_SOCKET active_socket;
     active_socket_init(&active_socket);
@@ -39,7 +39,7 @@ void* serveruj(void* data) {
     passive_socket_wait_for_client(&d->p_sock,&active_socket);
 
     //vytvorenie prveho hraca
-    d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych,&active_socket, &quiz};
+    d->hrac1 = &(HRAC_DATA){d->pocet_pripojenych, &active_socket, &quiz};
     d->pocet_pripojenych++;
     printf("server zaznamenal klienta.\n");
 
@@ -64,7 +64,7 @@ void* serveruj(void* data) {
         passive_socket_wait_for_client(&d->p_sock,&a_sock);
 
         //pridanie hraca
-        d->hraci[d->pocet_pripojenych] = (HRAC_DATA){d->pocet_pripojenych, &a_sock, &quiz};
+        d->hrac2 = &(HRAC_DATA){d->pocet_pripojenych, &a_sock, &quiz};
         d->pocet_pripojenych++;
         printf("AKtualne pripojenych %d hracov.\n", d->pocet_pripojenych);
     }
@@ -73,44 +73,37 @@ void* serveruj(void* data) {
 
     //zacatie hry
     printf("Zaciatok hry.\n");
-    MODERATOR moderator_data = {d->pocet_hracov,5,d->hraci, &quiz};
+    MODERATOR moderator_data = {d->pocet_hracov, 5, d->hrac1, d->hrac2, &quiz};
     pthread_t moderator;
     pthread_create(&moderator,NULL, moderuj, &moderator_data);
 
     //ukoncenie hry
     pthread_join(moderator,NULL);
     destroyQuiz(&quiz);
+
     printf("Hra skoncena.\n");
     return NULL;
 }
 
 void* klientuj(void* data) {
     KLIENT_DATA *d = (KLIENT_DATA *)data;
-    //TODO spravit klienta
-    char* output = (char*)malloc(100);
-    memset(output, 0, 100);
-    clientReceiveData(d->c_sock,output,100);
-    printf("output: %s\n", output);
-    sleep(1);
-//    for (int i = 0; i < 100; i++) {
-//        const char *message = "sprava pre server";
-//        ssize_t message_length = strlen(message);
-//        clientSendData(d->c_sock, "sprava pre server", message_length);
-//        printf("klient poslal spravu.\n");
-//        usleep(8);
-//    }
-//
-//    printf("zadaj nieco\n");
-//    char input[100];
-//    scanf("%s", input);
-//    clientSendData(d->c_sock,input,100);
-    sleep(5);
-
-    clientCloseConnection(d->c_sock);
-    printf("Client disconnected.\n");
+    while (1) {
+        char* output = (char*)malloc(100);
+        memset(output, 0, 100);
+        clientReceiveData(d->c_sock, output, 100);
+        printf("received: %s.\n",output);
+        if (strcmp(output, ":end") != 0) {
+            clientSendData(d->c_sock,"a",100);
+            free(output);
+        } else {
+            free(output);
+            clientCloseConnection(d->c_sock);
+            printf("Client disconnected.\n");
+            return NULL;
+        }
+    }
 
 }
-
 int clientTryConnect(KLIENT_DATA* data) {
     if (clientInitialize(data->c_sock, data->hostname, data->port) == 0 && clientConnectToServer(data->c_sock) == 0) {
         printf("Client connected.\n");
@@ -127,6 +120,12 @@ int main(int argc, char** argv) {
     klient_data.port = argv[2];
     klient_data.hostname = argv[1];
     klient_data.c_sock = &c_sock;
+
+    CLIENT_SOCKET c_sock2;
+    KLIENT_DATA klient_data2;
+    klient_data2.port = argv[2];
+    klient_data2.hostname = argv[1];
+    klient_data2.c_sock = &c_sock2;
 
     // skusi sa pripojit ako klient
     if (clientTryConnect(&klient_data) == 0) {
@@ -148,14 +147,20 @@ int main(int argc, char** argv) {
 
         pthread_t th_server;
         pthread_create(&th_server,NULL,serveruj,&server_data);
-        sleep(1);
+        sleep(2);
         //vytvorenie klienta
         printf("vytvara sa klient.\n");
         pthread_t th_klient;
         clientTryConnect(&klient_data);
         pthread_create(&th_klient, NULL, klientuj, &klient_data);
 
+//vytvorenie klienta2
+        printf("vytvara sa klient2.\n");
+        pthread_t th_klient2;
+        clientTryConnect(&klient_data2);
+        pthread_create(&th_klient2, NULL, klientuj, &klient_data2);
 
+        pthread_join(th_klient2, NULL);
         pthread_join(th_klient, NULL);
         pthread_join(th_server,NULL);
     }

@@ -2,6 +2,7 @@
 // Created by petok on 7. 1. 2024.
 //
 #include <pthread.h>
+#include <stdbool.h>
 #include "kviz.h"
 
 void initializeQuiz(QUIZ* quiz) {
@@ -36,7 +37,7 @@ void initializeQuiz(QUIZ* quiz) {
     quiz->answers[5][0] = "Bryndzové halušky";
     quiz->answers[5][1] = "Knedle";
     quiz->answers[5][2] = "Pirohy";
-
+    quiz->moznaOdpoved = false;
     quiz->status = (int[]){0,0,0,0,0,0};
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     quiz->prihlasenieMutex = mutex;
@@ -44,6 +45,8 @@ void initializeQuiz(QUIZ* quiz) {
     quiz->odpovedPripravena = cond1;
     pthread_cond_t cond2 = PTHREAD_COND_INITIALIZER;
     quiz->otazkaPripravena = cond2;
+    pthread_cond_t cond3 = PTHREAD_COND_INITIALIZER;
+    quiz->mutexVolny = cond3;
 }
 
 int getRandomQuestion(QUIZ* quiz) {
