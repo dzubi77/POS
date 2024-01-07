@@ -11,7 +11,6 @@ int clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* po
         printf("No such host!");
         return 1;
     }
-
     bzero((char*)&client->serv_addr, sizeof(client->serv_addr));
     client->serv_addr.sin_family = AF_INET;
     bcopy((char*)client->server->h_addr, (char*)&client->serv_addr.sin_addr.s_addr, client->server->h_length);
@@ -33,9 +32,10 @@ int clientConnectToServer(CLIENT_SOCKET* client) {
     return 0;
 }
 
-void clientSendData(CLIENT_SOCKET* client, const char* message) {
-    int n = write(client->sock_fd, message, strlen(message));
+void clientSendData(CLIENT_SOCKET* client, const void* buffer, ssize_t length) {
+    int n = send(client->sock_fd, buffer, length,0);
     if (n < 0) {
+        printf("error sending socket.\n");
         error("Error while writing to socket!");
     }
 }

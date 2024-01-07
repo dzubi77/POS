@@ -3,18 +3,26 @@
 
 CMakeFiles/POS_SP.dir/klient/hrac.c.o: ../klient/hrac.c
 CMakeFiles/POS_SP.dir/klient/hrac.c.o: ../klient/hrac.h
+CMakeFiles/POS_SP.dir/klient/hrac.c.o: ../klient/sockety/client_socket.h
 
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o: ../klient/sockety/client_socket.c
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o: ../klient/sockety/client_socket.h
 
+CMakeFiles/POS_SP.dir/main.c.o: ../klient/hrac.h
+CMakeFiles/POS_SP.dir/main.c.o: ../klient/sockety/client_socket.h
 CMakeFiles/POS_SP.dir/main.c.o: ../main.c
+CMakeFiles/POS_SP.dir/main.c.o: ../server/moderator.h
 CMakeFiles/POS_SP.dir/main.c.o: ../server/sockety/active_socket.h
 CMakeFiles/POS_SP.dir/main.c.o: ../server/sockety/char_buffer.h
 CMakeFiles/POS_SP.dir/main.c.o: ../server/sockety/linked_list.h
 CMakeFiles/POS_SP.dir/main.c.o: ../server/sockety/passive_socket.h
 
+CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/kviz.h
 CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/moderator.c
 CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/moderator.h
+CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/sockety/active_socket.h
+CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/sockety/char_buffer.h
+CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/sockety/linked_list.h
 
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o: ../server/sockety/active_socket.c
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o: ../server/sockety/active_socket.h
