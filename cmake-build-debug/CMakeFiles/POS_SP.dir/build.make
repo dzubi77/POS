@@ -62,10 +62,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /tmp/tmp.D9pG1miivb
+CMAKE_SOURCE_DIR = /tmp/tmp.s66x0FtYaJ
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /tmp/tmp.D9pG1miivb/cmake-build-debug
+CMAKE_BINARY_DIR = /tmp/tmp.s66x0FtYaJ/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/POS_SP.dir/depend.make
@@ -78,94 +78,94 @@ include CMakeFiles/POS_SP.dir/flags.make
 
 CMakeFiles/POS_SP.dir/main.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/POS_SP.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/main.c.o -c /tmp/tmp.D9pG1miivb/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/POS_SP.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/main.c.o -c /tmp/tmp.s66x0FtYaJ/main.c
 
 CMakeFiles/POS_SP.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/main.c > CMakeFiles/POS_SP.dir/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/main.c > CMakeFiles/POS_SP.dir/main.c.i
 
 CMakeFiles/POS_SP.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/main.c -o CMakeFiles/POS_SP.dir/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/main.c -o CMakeFiles/POS_SP.dir/main.c.s
 
 CMakeFiles/POS_SP.dir/server/moderator.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/server/moderator.c.o: ../server/moderator.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/POS_SP.dir/server/moderator.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/moderator.c.o -c /tmp/tmp.D9pG1miivb/server/moderator.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/POS_SP.dir/server/moderator.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/moderator.c.o -c /tmp/tmp.s66x0FtYaJ/server/moderator.c
 
 CMakeFiles/POS_SP.dir/server/moderator.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/server/moderator.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/server/moderator.c > CMakeFiles/POS_SP.dir/server/moderator.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/server/moderator.c > CMakeFiles/POS_SP.dir/server/moderator.c.i
 
 CMakeFiles/POS_SP.dir/server/moderator.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/server/moderator.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/server/moderator.c -o CMakeFiles/POS_SP.dir/server/moderator.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/server/moderator.c -o CMakeFiles/POS_SP.dir/server/moderator.c.s
 
 CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o: ../server/sockety/passive_socket.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o -c /tmp/tmp.D9pG1miivb/server/sockety/passive_socket.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o -c /tmp/tmp.s66x0FtYaJ/server/sockety/passive_socket.c
 
 CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/server/sockety/passive_socket.c > CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/server/sockety/passive_socket.c > CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.i
 
 CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/server/sockety/passive_socket.c -o CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/server/sockety/passive_socket.c -o CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.s
 
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o: ../server/sockety/active_socket.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o -c /tmp/tmp.D9pG1miivb/server/sockety/active_socket.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o -c /tmp/tmp.s66x0FtYaJ/server/sockety/active_socket.c
 
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/server/sockety/active_socket.c > CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/server/sockety/active_socket.c > CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.i
 
 CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/server/sockety/active_socket.c -o CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/server/sockety/active_socket.c -o CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.s
 
 CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o: ../server/sockety/char_buffer.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o -c /tmp/tmp.D9pG1miivb/server/sockety/char_buffer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o -c /tmp/tmp.s66x0FtYaJ/server/sockety/char_buffer.c
 
 CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/server/sockety/char_buffer.c > CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/server/sockety/char_buffer.c > CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.i
 
 CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/server/sockety/char_buffer.c -o CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/server/sockety/char_buffer.c -o CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.s
 
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o: ../klient/sockety/client_socket.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o -c /tmp/tmp.D9pG1miivb/klient/sockety/client_socket.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o -c /tmp/tmp.s66x0FtYaJ/klient/sockety/client_socket.c
 
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/klient/sockety/client_socket.c > CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/klient/sockety/client_socket.c > CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.i
 
 CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/klient/sockety/client_socket.c -o CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/klient/sockety/client_socket.c -o CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.s
 
 CMakeFiles/POS_SP.dir/klient/hrac.c.o: CMakeFiles/POS_SP.dir/flags.make
 CMakeFiles/POS_SP.dir/klient/hrac.c.o: ../klient/hrac.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/POS_SP.dir/klient/hrac.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/klient/hrac.c.o -c /tmp/tmp.D9pG1miivb/klient/hrac.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/POS_SP.dir/klient/hrac.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/POS_SP.dir/klient/hrac.c.o -c /tmp/tmp.s66x0FtYaJ/klient/hrac.c
 
 CMakeFiles/POS_SP.dir/klient/hrac.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/POS_SP.dir/klient/hrac.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.D9pG1miivb/klient/hrac.c > CMakeFiles/POS_SP.dir/klient/hrac.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /tmp/tmp.s66x0FtYaJ/klient/hrac.c > CMakeFiles/POS_SP.dir/klient/hrac.c.i
 
 CMakeFiles/POS_SP.dir/klient/hrac.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/POS_SP.dir/klient/hrac.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.D9pG1miivb/klient/hrac.c -o CMakeFiles/POS_SP.dir/klient/hrac.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /tmp/tmp.s66x0FtYaJ/klient/hrac.c -o CMakeFiles/POS_SP.dir/klient/hrac.c.s
 
 # Object files for target POS_SP
 POS_SP_OBJECTS = \
@@ -189,7 +189,7 @@ POS_SP: CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o
 POS_SP: CMakeFiles/POS_SP.dir/klient/hrac.c.o
 POS_SP: CMakeFiles/POS_SP.dir/build.make
 POS_SP: CMakeFiles/POS_SP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable POS_SP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable POS_SP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/POS_SP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -202,6 +202,6 @@ CMakeFiles/POS_SP.dir/clean:
 .PHONY : CMakeFiles/POS_SP.dir/clean
 
 CMakeFiles/POS_SP.dir/depend:
-	cd /tmp/tmp.D9pG1miivb/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /tmp/tmp.D9pG1miivb /tmp/tmp.D9pG1miivb /tmp/tmp.D9pG1miivb/cmake-build-debug /tmp/tmp.D9pG1miivb/cmake-build-debug /tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles/POS_SP.dir/DependInfo.cmake --color=$(COLOR)
+	cd /tmp/tmp.s66x0FtYaJ/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /tmp/tmp.s66x0FtYaJ /tmp/tmp.s66x0FtYaJ /tmp/tmp.s66x0FtYaJ/cmake-build-debug /tmp/tmp.s66x0FtYaJ/cmake-build-debug /tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/POS_SP.dir/depend
 

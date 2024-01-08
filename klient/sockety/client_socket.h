@@ -20,7 +20,7 @@ typedef struct client_socket {
 void error(const char* message);
 int clientInitialize(CLIENT_SOCKET* client, const char* hostname, const char* port);
 int clientConnectToServer(CLIENT_SOCKET* client);
-void clientSendData(CLIENT_SOCKET* client, const char* message);
+void clientSendData(CLIENT_SOCKET* client, const void* buffer, ssize_t length);
 void clientReceiveData(CLIENT_SOCKET* client, char* buffer, int bufferSize);
 void clientCloseConnection(CLIENT_SOCKET* client);
 _Bool clientIsConnected(CLIENT_SOCKET* client);
