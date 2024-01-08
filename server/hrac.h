@@ -10,11 +10,12 @@
 typedef struct hrac_data {
     int id;
     ACTIVE_SOCKET* a_sock;
+    _Bool hraSa;
     QUIZ *kviz;
 } HRAC_DATA;
 
 void* hraj(void* data);
 void* pocuvaj(void* data);
-void sendData(HRAC_DATA *d, char *message);
+void sendData(HRAC_DATA *d, const char *message);
 void sendEndMessage(HRAC_DATA *d);
 #endif //POS_SP_HRAC_H

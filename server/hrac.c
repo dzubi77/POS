@@ -8,30 +8,39 @@ void* hraj(void* data) {
 
     CHAR_BUFFER output;
     char_buffer_init(&output);
-
-    while(d->a_sock->is_reading) {
-        active_socket_try_get_read_data(d->a_sock, &output);
-        if (output.size > 0) {
-           //TODO zapisat odpoved do kvizu
+    if(d->hraSa && d->kviz->hraSa) {
+        for (int i = 0; i < 5; i++) {
             pthread_mutex_lock(&d->kviz->prihlasenieMutex);
-            while (!&d->kviz->moznaOdpoved) {
-                pthread_cond_wait(&d->kviz->mutexVolny, &d->kviz->prihlasenieMutex);
-            }
-            if (d->id == 1){
-                d->kviz->odpoved1 = rand() % 3 + 1;
-            } else {
-                d->kviz->odpoved2 = rand() % 3 + 1;
-            }
-            if (d->kviz->odpoved1 != 0 && d->kviz->odpoved2 != 0) {
-                pthread_cond_signal(&d->kviz->mutexVolny);
-            } else {
-                pthread_cond_signal(&d->kviz->odpovedPripravena);
-            }
-            pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
-        }
-        usleep(1);
-    }
+            if (d->kviz->moznaOdpoved) {
+                pthread_cond_wait(&d->kviz->otazkaPripravena, &d->kviz->prihlasenieMutex);
+                pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
+                usleep(rand() % 6000 + 1000);
+                if (pthread_mutex_trylock(&d->kviz->prihlasenieMutex) != 0) {
+                    pthread_cond_wait(&d->kviz->mutexVolny, &d->kviz->prihlasenieMutex);
+                }
+                int odpoved = rand() % 3 + 1;
+                if (d->id == 1) {
+                    d->kviz->odpoved1 = odpoved;
 
+                } else {
+                    d->kviz->odpoved2 = odpoved;
+                }
+                if (d->kviz->prvaOdpoved == 0) {
+                    d->kviz->prvaOdpoved = d->id;
+                }
+                printf("Hráč %d odpovedal %d.\n", d->id, odpoved);
+                if (d->kviz->odpoved1 != 0 && d->kviz->odpoved2 != 0) {
+                    pthread_cond_signal(&d->kviz->odpovedPripravena);
+                    pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
+                } else {
+                    pthread_cond_signal(&d->kviz->mutexVolny);
+                    pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
+                }
+            } else {
+                pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
+            }
+        }
+    }
     pthread_join(th_read,NULL);
     char_buffer_destroy(&output);
     return NULL;
@@ -43,18 +52,15 @@ void* pocuvaj(void* data) {
     return NULL;
 }
 
-void sendData(HRAC_DATA *d, char *message) {
+void sendData(HRAC_DATA *d, const char *message) {
     CHAR_BUFFER buf;
     char_buffer_init(&buf);
     char_buffer_append(&buf,message, strlen(message));
     active_socket_write_data(d->a_sock,&buf);
 }
 
-void sendEndMessage(HRAC_DATA *d){
+void sendEndMessage(HRAC_DATA *d) {
+    d->hraSa = false;
     active_socket_write_end_message(d->a_sock);
-    active_socket_stop_reading(d->a_sock);
-}
-
-void skonci(HRAC_DATA *d) {
     active_socket_stop_reading(d->a_sock);
 }

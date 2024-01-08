@@ -7,12 +7,15 @@
 
 void initializeQuiz(QUIZ* quiz) {
     quiz->count = 6;
-    quiz->question = (char*[]){"Aké je hlavné mesto Slovenska?",
-                               "Ktorá rieka preteká cez Bratislavu?",
-                               "Koľko milionov obyvateľov má Slovensko?",
-                               "Ktorý slovenský hrad je najväčší?",
-                               "Kto je zakladateľom prvej slovenskej republiky?",
-                               "Aké je tradičné slovenské jedlo?"};
+    quiz->hraSa = false;
+    quiz->question = malloc(sizeof(char*) * quiz->count);
+    quiz->question[0] = "Aké je hlavné mesto Slovenska?";
+    quiz->question[1] = "Ktorá rieka preteká cez Bratislavu?";
+    quiz->question[2] = "Koľko milionov obyvateľov má Slovensko?";
+    quiz->question[3] = "Ktorý slovenský hrad je najväčší?";
+    quiz->question[4] = "Kto je zakladateľom prvej slovenskej republiky?";
+    quiz->question[5] = "Aké je tradičné slovenské jedlo?";
+
     quiz->correctAnswerIndex = (int[]){2,0,1,0,2,0};
     quiz->answers[0][0] = "Brno";
     quiz->answers[0][1] = "Budapešť";
@@ -32,7 +35,7 @@ void initializeQuiz(QUIZ* quiz) {
 
     quiz->answers[4][0] = "Jozef Tiso";
     quiz->answers[4][1] = "Andrej Hlinka";
-    quiz->answers[4][2] = "Milan Rastislav Štefánik";
+    quiz->answers[4][2] = "M.R. Štefánik";
 
     quiz->answers[5][0] = "Bryndzové halušky";
     quiz->answers[5][1] = "Knedle";
@@ -69,7 +72,8 @@ int getRandomQuestion(QUIZ* quiz) {
     quiz->status[randomIndex] = 1;  // Mark the question as sent
     return randomIndex;
 }
-void destroyQuiz(QUIZ *quiz){
+void destroyQuiz(QUIZ *quiz) {
+    free(quiz->question);
     pthread_mutex_destroy(&quiz->prihlasenieMutex);
     pthread_cond_destroy(&quiz->otazkaPripravena);
     pthread_cond_destroy(&quiz->odpovedPripravena);

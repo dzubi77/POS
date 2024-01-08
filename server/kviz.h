@@ -15,9 +15,10 @@ typedef struct quiz {
     char **question;
     char *answers[NUM_QUESTIONS][NUM_ANSWERS];
     int *correctAnswerIndex;
-    char odpoved1;
-    char odpoved2;
+    int odpoved1;
+    int odpoved2;
     _Bool moznaOdpoved;
+    _Bool hraSa;
     int prvaOdpoved;
     int* status;
     pthread_mutex_t prihlasenieMutex;
