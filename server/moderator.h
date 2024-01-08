@@ -15,5 +15,5 @@ typedef struct Moderator {
 } MODERATOR;
 
 void* moderuj(void* data);
-
+int sendQuestion(MODERATOR *d, int cisloOtazky);
 #endif //MODERATOR_H

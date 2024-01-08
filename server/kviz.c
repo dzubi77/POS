@@ -6,7 +6,7 @@
 #include "kviz.h"
 
 void initializeQuiz(QUIZ* quiz) {
-    quiz->count = 6;
+    quiz->count = 10;
     quiz->hraSa = false;
     quiz->question = malloc(sizeof(char*) * quiz->count);
     quiz->question[0] = "Aké je hlavné mesto Slovenska?";
@@ -15,8 +15,14 @@ void initializeQuiz(QUIZ* quiz) {
     quiz->question[3] = "Ktorý slovenský hrad je najväčší?";
     quiz->question[4] = "Kto je zakladateľom prvej slovenskej republiky?";
     quiz->question[5] = "Aké je tradičné slovenské jedlo?";
-
-    quiz->correctAnswerIndex = (int[]){2,0,1,0,2,0};
+    quiz->question[6] = "V ktorom roku vzniklo Slovensko?";
+    quiz->question[7] = "Ktorá hora je najvyššia na Slovensku?";
+    quiz->question[8] = "Kto je autorom hymny Slovenskej republiky?";
+    quiz->question[9] = "Koľko korún je najväčšou bankovkou v dejinách Slovenska?";
+    int correctAnswers[] = {2, 0, 1, 0, 2, 0, 1, 0, 2, 1};
+    for (int i = 0; i < NUM_QUESTIONS; ++i) {
+        quiz->correctAnswerIndex[i] = correctAnswers[i];
+    }
     quiz->answers[0][0] = "Brno";
     quiz->answers[0][1] = "Budapešť";
     quiz->answers[0][2] = "Bratislava";
@@ -40,8 +46,28 @@ void initializeQuiz(QUIZ* quiz) {
     quiz->answers[5][0] = "Bryndzové halušky";
     quiz->answers[5][1] = "Knedle";
     quiz->answers[5][2] = "Pirohy";
+
+    quiz->answers[6][0] = "1993";
+    quiz->answers[6][1] = "2000";
+    quiz->answers[6][2] = "1989";
+
+    quiz->answers[7][0] = "Gerlachovský štít";
+    quiz->answers[7][1] = "Kriváň";
+    quiz->answers[7][2] = "Rysy";
+
+    quiz->answers[8][0] = "Andrej Sládkovič";
+    quiz->answers[8][1] = "Janko Matúška";
+    quiz->answers[8][2] = "Ján Kollár";
+
+    quiz->answers[9][0] = "1,000,000";
+    quiz->answers[9][1] = "100,000";
+    quiz->answers[9][2] = "1,000";
+
     quiz->moznaOdpoved = false;
-    quiz->status = (int[]){0,0,0,0,0,0};
+    int statusy[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < NUM_QUESTIONS; ++i) {
+        quiz->status[i] = statusy[i];
+    }
     pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
     quiz->prihlasenieMutex = mutex;
     pthread_cond_t cond1 = PTHREAD_COND_INITIALIZER;
@@ -77,4 +103,5 @@ void destroyQuiz(QUIZ *quiz) {
     pthread_mutex_destroy(&quiz->prihlasenieMutex);
     pthread_cond_destroy(&quiz->otazkaPripravena);
     pthread_cond_destroy(&quiz->odpovedPripravena);
+    pthread_cond_destroy(&quiz->mutexVolny);
 }

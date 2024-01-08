@@ -7,20 +7,20 @@
 
 #include <malloc.h>
 #include <stdlib.h>
-#define NUM_QUESTIONS 6
+#define NUM_QUESTIONS 10
 #define NUM_ANSWERS 3
 
 typedef struct quiz {
     int count;
     char **question;
     char *answers[NUM_QUESTIONS][NUM_ANSWERS];
-    int *correctAnswerIndex;
+    int correctAnswerIndex[NUM_QUESTIONS];
     int odpoved1;
     int odpoved2;
     _Bool moznaOdpoved;
     _Bool hraSa;
     int prvaOdpoved;
-    int* status;
+    int status[NUM_QUESTIONS];
     pthread_mutex_t prihlasenieMutex;
     pthread_cond_t otazkaPripravena;
     pthread_cond_t mutexVolny;

@@ -28,7 +28,7 @@ void* hraj(void* data) {
                 if (d->kviz->prvaOdpoved == 0) {
                     d->kviz->prvaOdpoved = d->id;
                 }
-                printf("Hráč %d odpovedal %d.\n", d->id, odpoved);
+
                 if (d->kviz->odpoved1 != 0 && d->kviz->odpoved2 != 0) {
                     pthread_cond_signal(&d->kviz->odpovedPripravena);
                     pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
