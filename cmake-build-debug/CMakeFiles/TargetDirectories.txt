@@ -1,3 +1,3 @@
-/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles/edit_cache.dir
-/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles/POS_SP.dir
+C:/Users/petok/Downloads/zidacky_github_nejde/POS_SP/cmake-build-debug/CMakeFiles/POS_SP.dir
+C:/Users/petok/Downloads/zidacky_github_nejde/POS_SP/cmake-build-debug/CMakeFiles/ALL_BUILD.dir
+C:/Users/petok/Downloads/zidacky_github_nejde/POS_SP/cmake-build-debug/CMakeFiles/ZERO_CHECK.dir

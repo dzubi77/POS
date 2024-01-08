@@ -4,7 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/tmp/tmp.D9pG1miivb/main.c" "/tmp/tmp.D9pG1miivb/cmake-build-debug/CMakeFiles/POS_SP.dir/main.c.o"
+  "/tmp/tmp.s66x0FtYaJ/klient/hrac.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/klient/hrac.c.o"
+  "/tmp/tmp.s66x0FtYaJ/klient/sockety/client_socket.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/klient/sockety/client_socket.c.o"
+  "/tmp/tmp.s66x0FtYaJ/main.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/main.c.o"
+  "/tmp/tmp.s66x0FtYaJ/server/moderator.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/server/moderator.c.o"
+  "/tmp/tmp.s66x0FtYaJ/server/sockety/active_socket.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/server/sockety/active_socket.c.o"
+  "/tmp/tmp.s66x0FtYaJ/server/sockety/char_buffer.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/server/sockety/char_buffer.c.o"
+  "/tmp/tmp.s66x0FtYaJ/server/sockety/passive_socket.c" "/tmp/tmp.s66x0FtYaJ/cmake-build-debug/CMakeFiles/POS_SP.dir/server/sockety/passive_socket.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
