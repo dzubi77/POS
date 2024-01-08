@@ -30,11 +30,11 @@ void* moderuj(void* data) {
         //cakam na odpovede
         pthread_cond_wait(&d->quiz->odpovedPripravena, &d->quiz->prihlasenieMutex);
         //vsetci odpovedali vyhodnotenie odpovedi
-        printf("Prvý bol hráč číslo %d\n", d->quiz->prvaOdpoved);
-        printf("Hráč 1 odpovedal %d.\n", d->quiz->odpoved1);
-        printf("Hráč 2 odpovedal %d.\n", d->quiz->odpoved2);
         int spravnaOdpoved = d->quiz->correctAnswerIndex[questionIndex];
-        printf("spravna odpoved %d\n",spravnaOdpoved);
+        char buffer[100];
+        snprintf(buffer, sizeof(buffer), "Prvý bol hráč číslo %d\nHráč 1 odpovedal %d. Hráč 2 odpovedal %d.\nSprávna odpoveď bola %d.", d->quiz->prvaOdpoved,d->quiz->odpoved1,d->quiz->odpoved2, spravnaOdpoved+1);
+        sendData(d->hrac1, buffer);
+        sendData(d->hrac2, buffer);
 
         if (d->quiz->prvaOdpoved == 1)
         {
@@ -61,24 +61,36 @@ void* moderuj(void* data) {
             }
         }
 
-        printf("Body: hrac1: %d hrac2: %d\n", bodyHrac1, bodyHrac2);
+        snprintf(buffer, sizeof(buffer), "Body: hráč 1: %d, hráč 2: %d", bodyHrac1, bodyHrac2);
+        sendData(d->hrac1, buffer);
+        sendData(d->hrac2, buffer);
         //priprava na dalsie kolo
         d->quiz->odpoved1 = 0;
         d->quiz->odpoved2 = 0;
         d->quiz->prvaOdpoved = 0;
         pthread_mutex_unlock(&d->quiz->prihlasenieMutex);
+
         sleep(5);
+        printf("-----------------------------------------------------\n");
     }
 
     d->quiz->hraSa = false;
     //vyhodnotenie kvizu
+    char buffer[100];
     if (bodyHrac1 == bodyHrac2){
-        printf("Bola to remiza.\n");
+        snprintf(buffer, sizeof(buffer), "Bola to remíza.");
+        sendData(d->hrac1, buffer);
+        sendData(d->hrac2, buffer);
     } else {
         int vyherca = bodyHrac2 > bodyHrac1 ? 2 : 1;
-        printf("Vyhral hráč číslo %d.\n", vyherca);
+        snprintf(buffer, sizeof(buffer), "Vyhral hráč číslo %d.", vyherca);
+        sendData(d->hrac1, buffer);
+        sendData(d->hrac2, buffer);
     }
-    printf("Dovidenia v ďalšej hre.\n");
+    snprintf(buffer, sizeof(buffer), "Dovidenia v ďalšej hre.\n");
+    sendData(d->hrac1, buffer);
+    sendData(d->hrac2, buffer);
+
     sleep(1);
     sendEndMessage(d->hrac1);
     sendEndMessage(d->hrac2);

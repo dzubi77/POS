@@ -19,5 +19,4 @@ add_executable(POS_SP main.c
         server/server.c
 )
 
-target_link_libraries(POS_SP ${GTK3_LIBRARIES})
 target_link_libraries(POS_SP pthread)

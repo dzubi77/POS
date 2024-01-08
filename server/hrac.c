@@ -12,13 +12,21 @@ void* hraj(void* data) {
         for (int i = 0; i < 5; i++) {
             pthread_mutex_lock(&d->kviz->prihlasenieMutex);
             if (d->kviz->moznaOdpoved) {
+                //cakam kym je otazka pripravena
                 pthread_cond_wait(&d->kviz->otazkaPripravena, &d->kviz->prihlasenieMutex);
                 pthread_mutex_unlock(&d->kviz->prihlasenieMutex);
+
+                //simulujem cas cakania na klienta
                 usleep(rand() % 6000 + 1000);
                 if (pthread_mutex_trylock(&d->kviz->prihlasenieMutex) != 0) {
                     pthread_cond_wait(&d->kviz->mutexVolny, &d->kviz->prihlasenieMutex);
                 }
+                //vytvori sa nahodna odpoved,posle sa klientovi a ulozi sa do kvizu
                 int odpoved = rand() % 3 + 1;
+                char message[50];
+                sprintf(message, "Zaznamenaná odpoveď: %d", odpoved);
+                sendData(d,message);
+
                 if (d->id == 1) {
                     d->kviz->odpoved1 = odpoved;
 

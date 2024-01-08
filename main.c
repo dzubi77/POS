@@ -29,16 +29,16 @@ int main(int argc, char** argv) {
     klient_data2.id = 2;
     // skusi sa pripojit ako klient
     if (clientTryConnect(&klient_data) == 0) {
-        printf("Connected to the server.\n");
+        //printf("Connected to the server.\n");
 
         //server existuje, vytvorenie klienta
         klientuj(&klient_data);
     } else {
         //server nie je zalozeny, treba ho zalozit
-        printf("Connection not established.Creating server.\n");
+        //printf("Connection not established.Creating server.\n");
 
         //vytvorenie servera
-        printf("vytvara sa server\n");
+        //printf("vytvara sa server\n");
         SERVER_DATA server_data;
         server_data.port = atoi(argv[2]);
         //ak sa podari rozbehat zmenit na false
@@ -50,18 +50,18 @@ int main(int argc, char** argv) {
         sleep(1);
 
         //vytvorenie klienta
-        printf("vytvara sa klient.\n");
+        //printf("vytvara sa klient.\n");
         pthread_t th_klient;
         clientTryConnect(&klient_data);
         pthread_create(&th_klient, NULL, klientuj, &klient_data);
 
         //vytvorenie klienta2
-        printf("vytvara sa klient2.\n");
-        pthread_t th_klient2;
-        clientTryConnect(&klient_data2);
-        pthread_create(&th_klient2, NULL, klientuj, &klient_data2);
-
-        pthread_join(th_klient2, NULL);
+        //printf("vytvara sa klient2.\n");
+//        pthread_t th_klient2;
+//        clientTryConnect(&klient_data2);
+//        pthread_create(&th_klient2, NULL, klientuj, &klient_data2);
+//
+//        pthread_join(th_klient2, NULL);
         pthread_join(th_klient, NULL);
         pthread_join(th_server,NULL);
     }

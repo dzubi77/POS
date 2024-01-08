@@ -6,6 +6,7 @@
 #include <string.h>
 #include "klient.h"
 
+//zisti ci je sprava otazka
 void parseMessage(const char *message) {
     char indikator = message[0];
 
